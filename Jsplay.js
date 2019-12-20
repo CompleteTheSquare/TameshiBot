@@ -2,7 +2,7 @@ const Discord = require('discord.js');//requires module discord.js
 
 const client = new Discord.Client();
 
-const {prefix, token} = require('./botconfig.json');
+const { prefix, token } = require('./botconfig.json');
 //program runs, tells me how many ppl, how many servers it is on in console
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -10,44 +10,62 @@ client.once('ready', () => {
   ${client.users.size} users, in 
   ${client.channels.size} channels of 
   ${client.guilds.size} server(s).`);
-    client.user.setActivity('In development on Itachi#8045 server');
     console.log(`token: `, token);
     console.log(`prefix: `, prefix);
 });
 
+
+
+
 client.on('message', async message => {
-    var holder = message.content
-var content1 = "=wiki"
-var content2 = holder.slice(5,100);
-content2 = content2.trim ();
-console.log("holder: ", holder);
-console.log("content: " ,content2);
-     if (message.content.includes ("=wiki"))  {
-        message.channel.send("https://en.wikipedia.org/wiki/"+content2)
-        message.channel.send(`------------- END OF INFORMATION -------------`);
+    var EntireMessage = message.content
+    var Part1 = "-wiki" // the command for wiki
+    var Part2 = EntireMessage.slice(6, 100);
+
+    Part2 = Part2.replace(/ /g, "_")
+
+    console.log("Entire Message: ", EntireMessage);
+
+
+    if (message.content.includes("-wiki")) {
+
+        var Part2 = EntireMessage.slice(6, 100);
+
+        Part2 = Part2.replace(/ /g, "_")
+        console.log("Search Term ", Part2);
+
+        message.channel.send("https://en.wikipedia.org/wiki/" + Part2)
+
+    }
+
+    if (message.content.includes("-def")) {
+
+        var Part2 = EntireMessage.slice(5, 100);
+
+        Part2 = Part2.replace(/ /g, "-")
+        console.log("Search Term ", Part2);
+        message.channel.send("https://www.dictionary.com/browse/" + Part2)
+
     }
 
 
-//to do: =info
-    if (message.content === `${prefix} info`) {
-        const taggedUser = message.mentions.users.first();
-        message.channel.send(`size of usersize list: `, message.mentions.users.size)
-
-
-        if (!message.mentions.users.size) {
-            return message.reply('You need to tag someone');
-            message.channel.send(`size of usersize list: `, message.mentions.users.size)
-        }
-        message.channel.send(`${taggedUser}'s information:`)
-
-        console.log(`MEEP: `,taggedUser);
-        console.log(taggedUser.username);
-
-        message.channel.send(`------------- END OF INFORMATION -------------`);
+    else if (message.content === ("-info")){
+        message.channel.send("Tameshibot")
     }
+
+    else if (message.content === ("-help")){
+        message.channel.send("wiki <_______> to search something on wikipedia . org")
+        message.channel.send("def <_______> to search something on dictionary .com")
+    }
+
 
 }
+)
 
-);
+
+
+
+
+;
 
 client.login(token); 
