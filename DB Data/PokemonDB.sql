@@ -6,9 +6,9 @@ USE PokemonDB;
 
 /*Table structure for table `customers` */
 
-DROP TABLE IF EXISTS Pokemon151;
+DROP TABLE IF EXISTS PokemonTable;
 
-CREATE TABLE Pokemon151 (
+CREATE TABLE PokemonTable (
   NamePkm varchar(50) NOT NULL,
   NumberPkm int NOT NULL,
   Type1 varchar(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE Pokemon151 (
   Tot int not null
 ); 
 
-insert into Pokemon151(NamePkm,NumberPkm,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Spd,Tot) values
+insert into PokemonTable(NamePkm,NumberPkm,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Spd,Tot) values
 ("Bulbasaur",1,"GRASS","POISON",45,49,49,65,65,45,318),
 ("Ivysaur",2,"GRASS","POISON",60,62,63,80,80,60,405),
 ("Venusaur",3,"GRASS","POISON",80,82,83,100,100,80,525),
@@ -216,4 +216,4 @@ insert into Pokemon151(NamePkm,NumberPkm,Type1,Type2,HP,Atk,Def,SpAtk,SpDef,Spd,
 ("Mew",151,"PSYCHIC"," ",100,100,100,100,100,100,600);
 
 
-select * from Pokemon151
+select * from PokemonTable
